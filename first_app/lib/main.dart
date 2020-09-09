@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './quiz.dart';
-import './result.dart';
+import './question.dart';
+import './answer.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,72 +13,30 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _questions = const [
-    {
-      "questionText": "what's your favorite color?",
-      "answers": [
-        {"text": "Black", "score": 10},
-        {"text": "Red", "score": 7},
-        {"text": "Green", "score": 5},
-        {"text": "White", "score": 3},
-      ]
-    },
-    {
-      "questionText": "what's your favorite animal?",
-      "answers": [
-        {"text": "Lion", "score": 1},
-        {"text": "Dog", "score": 3},
-        {"text": "Tiger", "score": 5},
-        {"text": "Cat", "score": 9},
-      ]
-    },
-    {
-      "questionText": "who's your favorite instructor?",
-      "answers": [
-        {"text": "MK", "score": 10},
-        {"text": "Kim", "score": 8},
-        {"text": "Minkyo", "score": 3},
-        {"text": "Udemy", "score": 1},
-      ]
-    }
-  ];
-
   var _questionIndex = 0;
-  var _totalScore = 0;
 
-  void _resetQuiz() {
-    setState(() {
-      _questionIndex = 0;
-      _totalScore = 0;
-    });
-  }
-
-  void _answerQuestion(int score) {
-    _totalScore += score;
+  void _answerQuestion() {
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
     print(_questionIndex);
-    if (_questionIndex < _questions.length) {
-      print("we have more _questions");
-    } else {
-      print("no more question");
-    }
   }
 
   @override
   Widget build(BuildContext context) {
+    var questions = ["what's your favorite color?", "what's your age"];
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text("My First App"),
         ),
-        body: _questionIndex < _questions.length
-            ? Quiz(
-                answerQuestion: _answerQuestion,
-                questionIndex: _questionIndex,
-                questions: _questions)
-            : Result(_totalScore, _resetQuiz),
+        body: Column(children: [
+          Question(questions[_questionIndex]),
+          Answer(_answerQuestion),
+          Answer(_answerQuestion),
+          Answer(_answerQuestion),
+        ]),
       ),
     );
   }
