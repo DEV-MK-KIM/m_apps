@@ -21,14 +21,12 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  // String titleInput;
-  // String amountInput;
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // state
   final List<Transaction> _userTransactions = [
     Transaction(
       id: 't1',
@@ -57,16 +55,11 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+// Bottom Widget Modal
   void _startAddNewTransaction(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      builder: (_) {
-        return GestureDetector(
-          onTap: () {},
-          child: NewTransaction(_addNewTransaction),
-          behavior: HitTestBehavior.opaque,
-        );
-      },
+      builder: (_) => NewTransaction(_addNewTransaction),
     );
   }
 
@@ -77,8 +70,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("Flutter App"),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () => _startAddNewTransaction(context),
+            icon: Icon(Icons.add_circle),
+            onPressed: () =>
+                _startAddNewTransaction(context), // showing up modal
           )
         ],
       ),
