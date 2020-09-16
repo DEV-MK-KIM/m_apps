@@ -7,6 +7,17 @@ class NewTransaction extends StatelessWidget {
 
   NewTransaction(this.addTx);
 
+  void submitData() {
+    final enteredTitle = titleController.text;
+    final enterdAmount = double.parse(amountController.text);
+
+    if (enteredTitle.isEmpty || enterdAmount <= 0) {
+      return;
+    }
+
+    addTx(enteredTitle, enterdAmount);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -17,27 +28,26 @@ class NewTransaction extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             TextField(
-                decoration: InputDecoration(labelText: "Title"),
-                controller: titleController
-
-                // onChanged: (val) {
-                //   titleInput = val;
-                // },
-                ),
+              decoration: InputDecoration(labelText: "Title"),
+              controller: titleController,
+              // onChanged: (val) {
+              //   titleInput = val;
+              // },
+            ),
             TextField(
-                decoration: InputDecoration(labelText: "Amount"),
-                controller: amountController
-                // onChanged: (val) {
-                //   amountInput = val;
-                // },
-                ),
+              decoration: InputDecoration(labelText: "Amount"),
+              controller: amountController,
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+
+              // onChanged: (val) {
+              //   amountInput = val;
+              // },
+            ),
             FlatButton(
-                child: Text("Add Transaction"),
-                textColor: Colors.deepPurple,
-                onPressed: () => addTx(
-                      titleController.text,
-                      double.parse(amountController.text),
-                    ))
+              child: Text("Add Transaction"),
+              textColor: Colors.deepPurple,
+              onPressed: submitData,
+            ),
           ],
         ),
       ),
