@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart'; // to use @required decorator
+import 'package:flutter/foundation.dart';
 
 class Transaction {
   final String id;
