@@ -89,6 +89,16 @@ class MealDetailScreen extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.delete,
+        ),
+        onPressed: () {
+          // Navigator.of(context).pop(); // remove the current screen on stack (same functionality as back button)
+          Navigator.of(context).pop(
+              mealId); // when popped off the navigator, passes mealID as argument in .then(result) ... in mealItem
+        },
+      ),
     );
   }
 }

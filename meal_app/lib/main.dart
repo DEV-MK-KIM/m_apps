@@ -4,6 +4,7 @@ import './screen/category_meals_screen.dart';
 import './screen/categories_screen.dart';
 import './screen/meal_detail_screen.dart';
 import './screen/tabs_screen.dart';
+import './screen/filters_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
         '/': (ctx) => TabsScreen(), // home can be replaced
         // '/category-meals': (ctx) => CategoryMealsScreen(), // can be replaced as below to prevent type error
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
-        MealDetailScreen.routeName: (ctx) => MealDetailScreen()
+        MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(),
       },
       // any non-registered route will be redirected as below
       onGenerateRoute: (settings) {
